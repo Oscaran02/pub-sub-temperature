@@ -8,6 +8,9 @@ class sensor:
         self.type = type
         self.time = int(time)
         self.conf = conf
+        self.correct_values = None
+        self.out_of_range_values = None
+        self.error_values = None
 
     @staticmethod
     def socket_settings():
@@ -17,14 +20,18 @@ class sensor:
         return socket
 
     def make_conf_numbers(self):
-        pass
+        with open(self.conf) as f:
+            contents = f.readlines()
+        self.correct_values = contents[0]
+        self.out_of_range_values = contents[1]
+        self.error_values = contents[2]
 
     def open(self):
         messages = [100, 200, 300]
         current_message = 0
 
         while True:
-            sleep(1)
+            sleep(self.time)
             self.socket.send_pyobj(1 + current_message)
 
             if current_message == 2:
