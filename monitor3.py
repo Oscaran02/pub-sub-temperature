@@ -9,7 +9,7 @@ class monitor:
         context = zmq.Context()
         self.socket = context.socket(zmq.SUB)
         self.socket.connect('tcp://127.0.0.1:5501')
-        topic_filter = "PH"  # 1 ph, 2 temperatura y 3 oxigeno
+        topic_filter = "oxigeno"  # 1 ph, 2 temperatura y 3 oxigeno
         self.socket.setsockopt_string(zmq.SUBSCRIBE, topic_filter)
 
     def open(self):

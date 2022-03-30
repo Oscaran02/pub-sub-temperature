@@ -56,12 +56,7 @@ class sensor:
         publisher_id = random.randrange(0, 9999)
         while True:
             sleep(self.time)
-            if self.type == "PH":
-                self.socket.send_string(("%d %d %s %d" % (1, publisher_id, self.type, next(value))))
-            elif self.type == "temperatura":
-                self.socket.send_string(("%d %d %s %d" % (2, publisher_id, self.type, next(value))))
-            elif self.type == "oxigeno":
-                self.socket.send_string(("%d %d %s %d" % (3, publisher_id, self.type, next(value))))
+            self.socket.send_string(("%s %d %s %d" % (self.type, publisher_id, next(value))))
 
 
 if __name__ == '__main__':
