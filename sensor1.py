@@ -12,23 +12,23 @@ class sensor:
         self.correct_values = None
         self.out_of_range_values = None
         self.error_values = None
+        self.socket = None
 
     # To make the socket settings
-    @staticmethod
-    def socket_settings():
+    def socket_config(self):
         context = zmq.Context()
-        socket = context.socket(zmq.PUB)
-        socket.bind('tcp://127.0.0.1:2000')
-        return socket
+        self.socket = context.socket(zmq.PUB)
+        self.socket.bind('tcp://127.0.0.1:2000')
 
     # Used in function make values
     def conf_values(self):
         with open(self.conf) as f:
             contents = f.readlines()
-        self.correct_values = contents[0]
-        self.out_of_range_values = contents[1]
-        self.error_values = contents[2]
+        self.correct_values = float(contents[0])
+        self.out_of_range_values = float(contents[1])
+        self.error_values = float(contents[2])
 
+    # Used to make the values according to the configuration defined
     def make_values(self):
         self.conf_values()
         if self.type == "PH":
@@ -43,25 +43,22 @@ class sensor:
                 yield random.randint(local_range[0], local_range[1])
             elif random_number < self.correct_values + self.out_of_range_values:  # Out of range values
                 if random.random() < 0.5:
-                    random.randint(0, local_range[0])
+                    yield random.randint(0, local_range[0])  # Number below the range
                 else:
-                    random.randint(local_range[1], 100)
+                    yield random.randint(local_range[1], 100)  # Number above the range
             else:  # bad values
                 yield -1
 
+    # Used to open the sensor
     def open(self):
-        messages = [100, 200, 300]
-        current_message = 0
+        self.socket_config()
+        value = self.make_values()
 
         while True:
             sleep(self.time)
-            self.socket.send_pyobj(1 + current_message)
-
-            if current_message == 2:
-                current_message = 0
-            else:
-                current_message = current_message + 1
+            self.socket.send_pyobj(next(value))
 
 
 if __name__ == '__main__':
-    sensor(sys.argv[1], sys.argv[2], sys.argv[3])
+    sensor1 = sensor(sys.argv[1], sys.argv[2], sys.argv[3])
+    sensor1.open()
