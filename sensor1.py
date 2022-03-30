@@ -18,7 +18,7 @@ class sensor:
     def socket_config(self):
         context = zmq.Context()
         self.socket = context.socket(zmq.PUB)
-        self.socket.connect('tcp://127.0.0.1:2000') # Connecting to the forwarder device
+        self.socket.connect('tcp://127.0.0.1:5500') # Connecting to the forwarder device
 
     # Used in function make values
     def conf_values(self):
@@ -56,7 +56,12 @@ class sensor:
         publisher_id = random.randrange(0, 9999)
         while True:
             sleep(self.time)
-            self.socket.send_pyobj((publisher_id, self.type, next(value)))
+            if self.type == "PH":
+                self.socket.send_string(("%d %d %s %d" % (1, publisher_id, self.type, next(value))))
+            elif self.type == "temperatura":
+                self.socket.send_string(("%d %d %s %d" % (2, publisher_id, self.type, next(value))))
+            elif self.type == "oxigeno":
+                self.socket.send_string(("%d %d %s %d" % (3, publisher_id, self.type, next(value))))
 
 
 if __name__ == '__main__':
