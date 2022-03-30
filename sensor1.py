@@ -56,7 +56,7 @@ class sensor:
         publisher_id = random.randrange(0, 9999)
         while True:
             sleep(self.time)
-            self.socket.send_string(("%s %d %s %d" % (self.type, publisher_id, next(value))))
+            self.socket.send_string(("%s %d %d" % (self.type, publisher_id, next(value))))
 
 
 if __name__ == '__main__':

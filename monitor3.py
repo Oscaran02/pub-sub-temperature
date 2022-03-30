@@ -16,7 +16,7 @@ class monitor:
         self.socket_config()
         while True:
             string = self.socket.recv()
-            topic, server_id, type, value = string.split()
+            type, server_id, value = string.split()
             server_id = server_id.decode("utf-8")
             type = type.decode("utf-8")
             value = value.decode("utf-8")
