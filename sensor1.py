@@ -18,7 +18,7 @@ class sensor:
     def socket_config(self):
         context = zmq.Context()
         self.socket = context.socket(zmq.PUB)
-        self.socket.bind('tcp://127.0.0.1:2000')
+        self.socket.connect('tcp://127.0.0.1:2000') # Connecting to the forwarder device
 
     # Used in function make values
     def conf_values(self):
@@ -53,10 +53,10 @@ class sensor:
     def open(self):
         self.socket_config()
         value = self.make_values()
-
+        publisher_id = random.randrange(0, 9999)
         while True:
             sleep(self.time)
-            self.socket.send_pyobj(next(value))
+            self.socket.send_pyobj((publisher_id, self.type, next(value)))
 
 
 if __name__ == '__main__':
