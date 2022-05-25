@@ -1,4 +1,6 @@
 from werkzeug.security import check_password_hash
+import datetime
+
 import zmq
 
 
@@ -40,18 +42,29 @@ class calidad:
         self.socket.connect('tcp://127.0.0.1:6501')
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
+    # Obtiene el tiempo de la operación en segundos decimales
+    @staticmethod
+    def calculate_operation_time(time):
+        timex = datetime.datetime.strptime(time, "%H:%M:%S")
+        operation_time = datetime.datetime.now() - timex
+        operation_time = operation_time.seconds + operation_time.microseconds / 1000000
+        return operation_time
+
     # Open the socket
     def open(self):
         self.socket_config()
+        print("Waiting for data...")
         while True:
-            print("Waiting for data...")
-            string = self.socket.recv()
-            type, server_id, value, time = string.split()
+            string = self.socket.recv() # Receive the data
+            server_id, type, value, time, time_monitor = string.split()  # Split the data
             server_id = server_id.decode("utf-8")
             type = type.decode("utf-8")
             value = value.decode("utf-8")
             time = time.decode("utf-8")
-            print(f"{time}: [server_id:{server_id} type:{type} value:{value}]")
+            time_monitor = time_monitor.decode("utf-8")
+            time_monitor = self.calculate_operation_time(time_monitor)  # Calculate the operation time
+            # Print the data
+            print(f"{time}: [server_id:{server_id} type:{type} value:{value}] (tiempo de la operación: {time_monitor}s)")
 
 
 if __name__ == "__main__":

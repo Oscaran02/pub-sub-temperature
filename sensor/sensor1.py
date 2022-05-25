@@ -19,11 +19,11 @@ class sensor:
     def socket_config(self):
         context = zmq.Context()
         self.socket = context.socket(zmq.PUB)
-        self.socket.connect('tcp://127.0.0.1:5500') # Connecting to the forwarder device
+        self.socket.connect('tcp://127.0.0.1:5500')  # Connecting to the forwarder device
 
     # Used in function make values
     def conf_values(self):
-        with open(self.conf) as f:
+        with open(f"../{self.conf}") as f:
             contents = f.readlines()
         self.correct_values = float(contents[0])
         self.out_of_range_values = float(contents[1])
@@ -55,7 +55,6 @@ class sensor:
         self.socket_config()
         value = self.make_values()
         publisher_id = random.randrange(0, 9999)
-        time = datetime.datetime.now().strftime("%d-%m-%Y::%H:%M:%S")
         while True:
             sleep(self.time)
             time = datetime.datetime.now().strftime("%H:%M:%S")

@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="devices" type="CompoundRunConfigurationType">
+    <toRun name="forwarder_device" type="PythonConfigurationType" />
+    <toRun name="forwarder_device_calidad" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
