@@ -58,7 +58,7 @@ class sensor:
         time = datetime.datetime.now().strftime("%d-%m-%Y::%H:%M:%S")
         while True:
             sleep(self.time)
-            time = datetime.datetime.now().strftime("%d-%m-%Y::%H:%M:%S")
+            time = datetime.datetime.now().strftime("%H:%M:%S")
             self.socket.send_string(("%s %d %d %s" % (self.type, publisher_id, next(value), str(time))))
 
 
