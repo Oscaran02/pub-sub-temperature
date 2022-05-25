@@ -78,4 +78,11 @@ if __name__ == "__main__":
     while not calidad.login_status:
         calidad.login()
     # Open the socket
-    calidad.open()
+    try:
+        calidad.open()
+        calidad.socket.close
+    except KeyboardInterrupt:
+        print("\n\nClosing the socket...")
+        calidad.socket.close()
+        print("Socket closed")
+

@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run everything" type="CompoundRunConfigurationType">
+    <toRun name="devices" type="CompoundRunConfigurationType" />
+    <toRun name="monitores" type="CompoundRunConfigurationType" />
+    <toRun name="sensores" type="CompoundRunConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
