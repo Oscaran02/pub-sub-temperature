@@ -18,7 +18,7 @@ class calidad:
         for line in contents:
             username, password = line.split("::")
             self.usernames.append(username)
-            self.passwords.append(password)
+            self.passwords.append(password.rstrip())
 
     # Check if the username and password are correct
     def login(self):
@@ -28,7 +28,9 @@ class calidad:
         # Check if the username and password are correct
         if username in self.usernames and check_password_hash(self.passwords[self.usernames.index(username)], password):
             self.login_status = True
+            print("Login successful")
         else:
+            print("Incorrect username or password")
             self.login_status = False
 
     # Socket configuration
@@ -42,6 +44,7 @@ class calidad:
     def open(self):
         self.socket_config()
         while True:
+            print("Waiting for data...")
             string = self.socket.recv()
             type, server_id, value, time = string.split()
             server_id = server_id.decode("utf-8")
