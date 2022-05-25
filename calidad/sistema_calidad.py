@@ -1,9 +1,5 @@
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 import zmq
-from time import sleep
-import datetime
-import sys
-import random
 
 
 # Sistema de calidad
@@ -35,12 +31,14 @@ class calidad:
         else:
             self.login_status = False
 
+    # Socket configuration
     def socket_config(self):
         context = zmq.Context()
         self.socket = context.socket(zmq.SUB)
         self.socket.connect('tcp://127.0.0.1:6501')
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
 
+    # Open the socket
     def open(self):
         self.socket_config()
         while True:
@@ -58,5 +56,5 @@ if __name__ == "__main__":
     # Login
     while not calidad.login_status:
         calidad.login()
-    #
+    # Open the socket
     calidad.open()
