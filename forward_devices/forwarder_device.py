@@ -2,6 +2,7 @@ import zmq
 
 if __name__ == "__main__":
     try:
+        print("Conectando dispositivo zqm...")
         context = zmq.Context(1)
         # Socket facing clients
         frontend = context.socket(zmq.SUB)
@@ -13,6 +14,7 @@ if __name__ == "__main__":
         backend = context.socket(zmq.PUB)
         backend.bind("tcp://*:5501")
 
+        print("Dispositivo conectado")
         # Creating device
         zmq.device(zmq.FORWARDER, frontend, backend)
     except Exception as e:

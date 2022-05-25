@@ -1,5 +1,7 @@
 from werkzeug.security import check_password_hash
 import datetime
+import os
+import psutil
 
 import zmq
 
@@ -55,7 +57,7 @@ class calidad:
         self.socket_config()
         print("Waiting for data...")
         while True:
-            string = self.socket.recv() # Receive the data
+            string = self.socket.recv()  # Receive the data
             server_id, type, value, time, time_monitor = string.split()  # Split the data
             server_id = server_id.decode("utf-8")
             type = type.decode("utf-8")
@@ -64,7 +66,10 @@ class calidad:
             time_monitor = time_monitor.decode("utf-8")
             time_monitor = self.calculate_operation_time(time_monitor)  # Calculate the operation time
             # Print the data
-            print(f"{time}: [server_id:{server_id} type:{type} value:{value}] (tiempo de la operación: {time_monitor}s)")
+            print(
+                f"{time}: [server_id:{server_id} type:{type} value:{value}] (tiempo de la operación: {time_monitor}s)")
+
+            print('RAM memory % available:', 100-psutil.virtual_memory()[2])
 
 
 if __name__ == "__main__":

@@ -15,10 +15,9 @@ if __name__ == "__main__":
         backend = context.socket(zmq.PUB)
         backend.bind("tcp://*:6501")
 
+        print("Dispositivo conectado")
         # Creating device
         zmq.device(zmq.FORWARDER, frontend, backend)
-
-        print("Dispositivo conectado")
 
     except Exception as e:
         print(e)
