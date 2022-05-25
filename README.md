@@ -1,7 +1,6 @@
 # pub-sub-temperature
 ## Tareas faltantes
 ### Oscar
-* Defina variables que permitan medir el rendimiento de su sistema, por ejemplo: tiempo de almacenamiento de cada medición (tiempo en llegar desde el sensor a la BD), tiempo en que tarda la llegada de cada alarma al sistema de calidad (desde el monitor que la detecta, hasta que se imprime), utilización de los procesadores, etc.  Debe definir al menos dos tipos de variables. 
 
 ### Diana y Gabriel
 * Debe existir también otro proceso encargado de chequear que todos los monitores están o no en funcionamiento (health check). 
