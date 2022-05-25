@@ -8,7 +8,7 @@ import random
 class sensor:
     def __init__(self, type, time, conf):
         self.type = type
-        self.time = int(time)
+        self.time = float(time)
         self.conf = conf
         self.correct_values = None
         self.out_of_range_values = None
