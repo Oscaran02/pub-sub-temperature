@@ -1,5 +1,6 @@
 import zmq
 from time import sleep
+import datetime
 import sys
 import random
 
@@ -54,9 +55,11 @@ class sensor:
         self.socket_config()
         value = self.make_values()
         publisher_id = random.randrange(0, 9999)
+        time = datetime.datetime.now().strftime("%d-%m-%Y::%H:%M:%S")
         while True:
             sleep(self.time)
-            self.socket.send_string(("%s %d %d" % (self.type, publisher_id, next(value))))
+            time = datetime.datetime.now().strftime("%d-%m-%Y::%H:%M:%S")
+            self.socket.send_string(("%s %d %d %s" % (self.type, publisher_id, next(value), str(time))))
 
 
 if __name__ == '__main__':

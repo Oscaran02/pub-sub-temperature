@@ -16,11 +16,12 @@ class monitor:
         self.socket_config()
         while True:
             string = self.socket.recv()
-            type, server_id, value = string.split()
+            type, server_id, value, time = string.split()
             server_id = server_id.decode("utf-8")
             type = type.decode("utf-8")
             value = value.decode("utf-8")
-            print(f"[server_id:{server_id} type:{type} value:{value}]")
+            time = time.decode("utf-8")
+            print(f"{time}: [server_id:{server_id} type:{type} value:{value}]")
 
 
 if __name__ == "__main__":
