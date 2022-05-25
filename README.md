@@ -1,18 +1,48 @@
 # pub-sub-temperature
-## Tareas faltantes
-### Oscar
+## Development
 
-### Diana y Gabriel
-* Debe existir también otro proceso encargado de chequear que todos los monitores están o no en funcionamiento (health check). 
+I decided to use pipenv because I find the installation of dependencies and its 
+app setup very easy and convenient.
 
-* es incorporar un elemento a su sistema que afecte su desempeño
-* Aumentar la carga: disminuir el tiempo de generación de medidas desde los sensores o aumentar el número de sensores
+### Setup
 
-### Veremos
-* Operaciones que van realizando cada uno de los procesos y resultado de la operación
+1. Install pipenv
+    ```shell
+    pip install pipenv
+    ```
+2. Install the dependencies:
+    ```shell
+    cd <project_dir>
+    pipenv install --three
+    ```
 
-## Documento 
-* Plantee una hipótesis. 
-* Realice medidas (experimentación) para comparar el sistema A con el B 
-* Análisis sus resultados
-* Exponga las conclusiones
+### Run it
+
+If you are not already in the `app` directory:
+
+```shell
+cd <project_dir>
+```
+
+In this moment you have two options to run the app:
+
+#### Activating the virtual environment
+
+Activate the pipenv shell and run the python file.
+
+```shell
+pipenv shell
+python *.py
+```
+
+#### Running directly the app
+
+or as an alternative, you can try this:
+
+```shell
+pipenv run python *.py
+```
+
+## Author
+
+* Oscar Pacheco - Backend Developer
