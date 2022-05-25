@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sensores" type="CompoundRunConfigurationType">
+    <toRun name="sensor oxigeno" type="PythonConfigurationType" />
+    <toRun name="sensor ph" type="PythonConfigurationType" />
+    <toRun name="sensor temperatura" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

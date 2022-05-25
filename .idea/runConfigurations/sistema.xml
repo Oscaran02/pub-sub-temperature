@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="sistema" type="CompoundRunConfigurationType">
-    <toRun name="monitor_PH" type="PythonConfigurationType" />
-    <toRun name="sensor ph" type="PythonConfigurationType" />
-    <method v="2" />
-  </configuration>
-</component>

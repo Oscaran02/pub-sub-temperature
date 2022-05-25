@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="monitores" type="CompoundRunConfigurationType">
+    <toRun name="monitor_PH" type="PythonConfigurationType" />
+    <toRun name="monitor_oxigeno" type="PythonConfigurationType" />
+    <toRun name="monitor_temp" type="PythonConfigurationType" />
+    <toRun name="sistema_calidad" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
