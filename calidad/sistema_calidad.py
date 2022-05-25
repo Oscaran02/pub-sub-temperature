@@ -69,7 +69,7 @@ class calidad:
             print(
                 f"{time}: [server_id:{server_id} type:{type} value:{value}] (tiempo de la operación: {time_monitor}s)")
 
-            print('RAM memory % available:', 100-psutil.virtual_memory()[2])
+            print(f'\t\tRAM memory % available: {100 - psutil.virtual_memory()[2]}%')
 
 
 if __name__ == "__main__":

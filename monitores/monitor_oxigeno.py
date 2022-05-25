@@ -63,4 +63,11 @@ class monitor:
 
 if __name__ == "__main__":
     monitor1 = monitor()
-    monitor1.open()
+    try:
+        print("Starting monitor...")
+        monitor1.open()
+    except KeyboardInterrupt:
+        print("\nClosing monitor...")
+        monitor1.socket.close()
+        monitor1.socket_pub.close()
+        print("Monitor closed")

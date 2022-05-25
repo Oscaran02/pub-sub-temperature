@@ -63,4 +63,10 @@ class sensor:
 
 if __name__ == '__main__':
     sensor1 = sensor(sys.argv[1], sys.argv[2], sys.argv[3])
-    sensor1.open()
+    try:
+        print("Sensor is running")
+        sensor1.open()
+    except KeyboardInterrupt:
+        print("\nClosing Sensor...")
+        sensor1.socket.close()
+        print("Sensor closed")

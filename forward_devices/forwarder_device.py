@@ -21,7 +21,6 @@ if __name__ == "__main__":
         print(e)
         print("Desconectando el dispositivo zqm...")
     finally:
-        pass
         frontend.close()
         backend.close()
         context.term()
